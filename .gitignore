@@ -1,0 +1,5 @@
+# Ignore all contents within .vim/plugged
+.vim/plugged/*
+
+# Allow .vim directory itself
+!.vim/
