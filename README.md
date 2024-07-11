@@ -6,7 +6,9 @@ Always compile Vim using the following config, this will ensure there is
 support for access into the system's clipboard and avoid annoyances.
 
 git clone https://github.com/vim/vim.git
+
 or #recommended
+
 git clone git@github.com:vim/vim
 
 cd vim
