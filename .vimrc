@@ -3,7 +3,7 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'yaegassy/coc-black-formatter', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mbbill/undotree'
