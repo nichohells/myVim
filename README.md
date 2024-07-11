@@ -1,5 +1,7 @@
 # My Vim Configuration
+Please refer to my [.vimrc](https://github.com/nichohells/myVim/blob/main/.vimrc), which is explained in detail
 
+# Installation
 Always compile Vim using the following config, this will ensure there is 
 support for access into the system's clipboard and avoid annoyances.
 
