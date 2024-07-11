@@ -1,5 +1,1 @@
-# Ignore all contents within .vim/plugged
-.vim/plugged/*
 
-# Allow .vim/plugged directory itself
-!.vim/plugged/
