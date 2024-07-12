@@ -10,9 +10,10 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-system-copy'
 Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
 Plug 'mattn/emmet-vim'
 Plug 'preservim/tagbar'
-Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'strboul/urlview.vim'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/goyo.vim'
@@ -25,6 +26,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
+
 
 " Wilder
 if has('nvim')
@@ -57,6 +60,9 @@ setlocal relativenumber
 let g:goyo_linenr = 1
 
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+
+" dadbodui toggle
+nnoremap <leader>db :DBUIToggle<CR>
 
 set clipboard=unnamedplus
 
