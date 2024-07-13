@@ -27,6 +27,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
+Plug 'preservim/nerdtree'
 
 
 " Wilder
@@ -59,7 +60,11 @@ set number
 setlocal relativenumber
 let g:goyo_linenr = 1
 
+" relativenumber in buffers opened from netrw 
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+
+" confirm coc selection with control + y
+" inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 
 " dadbodui toggle
 nnoremap <leader>db :DBUIToggle<CR>
@@ -171,10 +176,13 @@ nnoremap <C-h> :bp<CR>
 " UndotreeToggle
 nnoremap <F5> :UndotreeToggle<CR>
 
+" Nerdtree toggle
+nnoremap <C-n> :NERDTreeToggle<Cr>
+
 " netrw
-nnoremap <leader>n :Lex<cr>:vertical resize 30<cr>
-vnoremap <leader>n :Lex<cr>:vertical resize 30<cr>
-noremap <leader>pv :Explore<CR>
+" nnoremap <leader>n :Lex<cr>:vertical resize 30<cr>
+" vnoremap <leader>n :Lex<cr>:vertical resize 30<cr>
+" noremap <leader>pv :Explore<CR>
 
 set foldmethod=indent
 
