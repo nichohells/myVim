@@ -54,6 +54,10 @@ nnoremap <c-z> <nop>
 nnoremap <leader>ff :Files<Cr>
 nnoremap <leader>bf :Buffers<Cr>
 
+autocmd FileType nerdtree setlocal relativenumber
+autocmd FileType nerdtree setlocal number
+autocmd FileType nerdtree setlocal signcolumn=yes
+
 set background=light
 
 syntax enable
