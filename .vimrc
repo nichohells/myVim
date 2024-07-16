@@ -54,6 +54,9 @@ nnoremap <c-z> <nop>
 nnoremap <leader>ff :Files<Cr>
 nnoremap <leader>bf :Buffers<Cr>
 
+" Open linter alerts and errors in horizontal split window
+nnoremap <leader>er :lopen<Cr>
+
 autocmd FileType nerdtree setlocal relativenumber
 autocmd FileType nerdtree setlocal number
 autocmd FileType nerdtree setlocal signcolumn=yes
@@ -103,6 +106,10 @@ au FileType go map <leader>go :!go run %<CR>
 " Entire file ocurrences
 nnoremap <leader>rn :%s/\<<C-r><C-w>\>//<Left>
 
+" Replace word under cursor
+nnoremap <leader>rm :s/\<<C-r><C-w>\>//<Left>
+
+
 " Set up key mapping for changing file permissions
 nnoremap <leader>x :!chmod +x %<CR>
 
@@ -124,6 +131,8 @@ nnoremap N Nzzzv
 " Deprecating a horrible function
 nnoremap Q <Nop>
 
+" Deprecating a horrible feature of fzf vim
+autocmd VimEnter * command! -nargs=* Window echohl ErrorMsg | echo "E492: Not an editor command: W" | echohl None
 
 " Configure file handling and undo behavior
 set noswapfile
