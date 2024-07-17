@@ -135,8 +135,8 @@ nnoremap Q <Nop>
 autocmd VimEnter * command! -nargs=* Window echohl ErrorMsg | echo "E492: Not an editor command: W" | echohl None
 
 " Configure file handling and undo behavior
-set noswapfile
-set nobackup
+" set noswapfile
+" set nobackup
 let &undodir = expand('$HOME') . '/.vim/undodir'
 set undofile
 
@@ -198,7 +198,7 @@ nnoremap <C-n> :NERDTreeToggle<Cr>
 " netrw
 " nnoremap <leader>n :Lex<cr>:vertical resize 30<cr>
 " vnoremap <leader>n :Lex<cr>:vertical resize 30<cr>
-" noremap <leader>pv :Explore<CR>
+noremap <leader>pv :NERDTreeExplore<CR>
 
 set foldmethod=indent
 
@@ -228,13 +228,13 @@ set backspace=indent,eol,start  " more powerful backspacing
 
 " Identation settings
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab autoindent
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab autoindent
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab autoindent
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab autoindent
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab autoindent
 autocmd FileType lua setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab autoindent
 autocmd FileType c setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab autoindent
-
+autocmd FileType cpp setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab autoindent
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab autoindent
 " CoC Config at the end of the file
 
 " https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
@@ -406,7 +406,15 @@ function! FormatWithClangFormat()
     edit
 endfunction
 
-autocmd BufWritePre *.c,*.h call FormatWithClangFormat()
+function! FormatCpp()
+    " Run clang-format with specified options
+    silent execute "!clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, UseTab: Always}\" -i " . shellescape(expand("%"))
+
+    " Reload the buffer to reflect formatting changes
+    edit
+endfunction
+
+autocmd BufWritePre *.c,*.h,*.cpp call FormatWithClangFormat()
 
 nnoremap <leader>fp :call CocAction('format')<CR>
 
