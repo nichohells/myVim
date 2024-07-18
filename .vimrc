@@ -61,6 +61,15 @@ autocmd FileType nerdtree setlocal relativenumber
 autocmd FileType nerdtree setlocal number
 autocmd FileType nerdtree setlocal signcolumn=yes
 
+" Set cursor color to black (replace with your preferred color)
+highlight Cursor guifg=NONE guibg=#000000
+
+" Disable CursorLine
+autocmd ColorScheme * highlight clear CursorLine
+
+" Disable cusor highlights match parentheses, etc when under the cursor
+let loaded_matchparen = 1
+
 set background=light
 
 syntax enable
@@ -108,7 +117,6 @@ nnoremap <leader>rn :%s/\<<C-r><C-w>\>//<Left>
 
 " Replace word under cursor
 nnoremap <leader>rm :s/\<<C-r><C-w>\>//<Left>
-
 
 " Set up key mapping for changing file permissions
 nnoremap <leader>x :!chmod +x %<CR>
