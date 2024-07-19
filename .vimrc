@@ -70,6 +70,16 @@ autocmd ColorScheme * highlight clear CursorLine
 " Disable cusor highlights match parentheses, etc when under the cursor
 let loaded_matchparen = 1
 
+" Automatically save and restore cursor position when switching buffers
+augroup remember_cursor_position
+    autocmd!
+    " Save cursor position
+    autocmd BufLeave * if expand('%') != "" | let b:cursorpos = getpos(".") | endif
+    " Restore cursor position
+    autocmd BufEnter * if exists("b:cursorpos") | call setpos(".", b:cursorpos) | unlet b:cursorpos | endif
+augroup END
+
+
 set background=light
 
 syntax enable
@@ -215,6 +225,10 @@ set foldlevel=99
 " Cut the selected text to the clipboard
 vnoremap cx "+x
 nnoremap cx "+dd
+
+nnoremap x "_x
+nnoremap X "_x
+nnoremap <Del> "_x
 
 " My own vim-surround
 " Parentheses
@@ -414,15 +428,22 @@ function! FormatWithClangFormat()
     edit
 endfunction
 
-function! FormatCpp()
-    " Run clang-format with specified options
-    silent execute "!clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, UseTab: Always}\" -i " . shellescape(expand("%"))
+" Example .vimrc configuration for compiling GTK applications with Coc.nvim
+let g:cppflags = '-I/usr/include/gtk-3.0/'
+let g:ldflags = '`pkg-config --libs gtk+-3.0`'
 
-    " Reload the buffer to reflect formatting changes
-    edit
-endfunction
+" Set makeprg to compile with gcc and GTK flags
+set makeprg=gcc\ $CPPFLAGS\ -o\ %<\ %\ $LDFLAGS
 
-autocmd BufWritePre *.c,*.h,*.cpp call FormatWithClangFormat()
+" function! FormatCpp()
+"     " Run clang-format with specified options
+"     silent execute "!clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, UseTab: Always}\" -i " . shellescape(expand("%"))
+" 
+"     " Reload the buffer to reflect formatting changes
+"     edit
+" endfunction
+" 
+" autocmd BufWritePre *.c,*.h,*.cpp call FormatWithClangFormat()
 
 nnoremap <leader>fp :call CocAction('format')<CR>
 
