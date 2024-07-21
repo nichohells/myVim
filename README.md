@@ -9,6 +9,7 @@ Please refer to my [.vimrc](https://github.com/nichohells/myVim/blob/main/.vimrc
 git clone https://github.com/vim/vim.git
 
 2. Navigate into the Vim directory:
+
    cd vim
 
 3. Configure Vim with the desired features,
@@ -27,7 +28,9 @@ git clone https://github.com/vim/vim.git
     --prefix=/usr/local
 
 4. Compile and install Vim:
+
    make
+
    sudo make install
 
 # Remember
