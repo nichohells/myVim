@@ -183,7 +183,7 @@ set updatetime=50
 
 " Set color column at column 80
 set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=#333333
+highlight ColorColumn ctermbg=7 guibg=#333333
 
 " Toggle DBUI
 nnoremap <F10> :DBUIToggle<CR>
