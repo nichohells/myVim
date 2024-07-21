@@ -1,19 +1,20 @@
 # My Vim Configuration
+
 Please refer to my [.vimrc](https://github.com/nichohells/myVim/blob/main/.vimrc), which is explained in detail
 
 # Installation
-Always compile Vim using the following config, this will ensure there is 
-support for access into the system's clipboard and avoid annoyances.
+
+1. Clone the official [Vim](https://github.com/vim/vim) repository using
 
 git clone https://github.com/vim/vim.git
 
-or #recommended
+2. Navigate into the Vim directory:
+   cd vim
 
-git clone git@github.com:vim/vim
+3. Configure Vim with the desired features,
+   example below is the easiest way to compile Vim with system clipboard support (highly requested):
 
-cd vim
-
-./configure \
+   ./configure \
     --with-features=huge \
     --enable-multibyte \
     --enable-rubyinterp=yes \
@@ -25,9 +26,17 @@ cd vim
     --with-x \
     --prefix=/usr/local
 
-make
-
-sudo make install
+4. Compile and install Vim:
+   make
+   sudo make install
 
 # Remember
+
 You don't need to use Neovim at all, Vim is way more than enough.
+
+Bram Moolenaar, who left this world on 08/03/2023, has left behind a legacy that reminds us the free software movement is about more than just code. It’s also about community, generosity, and humanity.
+
+While Vim is free software, you are encouraged to support the orphans of Uganda through donations. For more information, please visit:
+
+• [Vim's official site](https://www.vim.org/) under the [Sponsoring](https://www.vim.org/sponsor/index.php) section.
+• [ICCF's site](https://iccf-holland.org/) (ICCF Holland - helping children in Uganda - founded by Bram Moolenaar)
