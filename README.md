@@ -42,4 +42,5 @@ Bram Moolenaar, who left this world on 08/03/2023, has left behind a legacy that
 While Vim is free software, you are encouraged to support the orphans of Uganda through donations. For more information, please visit:
 
 • [Vim's official site](https://www.vim.org/) under the [Sponsoring](https://www.vim.org/sponsor/index.php) section.
+
 • [ICCF's site](https://iccf-holland.org/) (ICCF Holland - helping children in Uganda - founded by Bram Moolenaar)
