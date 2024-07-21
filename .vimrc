@@ -226,9 +226,23 @@ set foldlevel=99
 vnoremap cx "+x
 nnoremap cx "+dd
 
+" Delete a single character without affecting the default register
 nnoremap x "_x
 nnoremap X "_x
 nnoremap <Del> "_x
+
+" Delete a line without affecting the default register
+nnoremap dd "_dd
+
+" Delete to a motion without affecting the default register
+nnoremap d "_d
+
+" Visual mode deletions
+vnoremap x "_x
+vnoremap X "_x
+vnoremap <Del> "_x
+vnoremap dd "_dd
+vnoremap d "_d
 
 " My own vim-surround
 " Parentheses
