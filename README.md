@@ -4,6 +4,27 @@ Please refer to my [.vimrc](https://github.com/nichohells/myVim/blob/main/.vimrc
 
 # Installation
 
+0. Install the necessary dependencies for Vim
+
+sudo apt install -y \
+  libncurses5-dev \
+  libgnome2-dev \
+  libgnomeui-dev \
+  libgtk2.0-dev \
+  libatk1.0-dev \
+  libcairo2-dev \
+  libx11-dev \
+  libxpm-dev \
+  libxt-dev \
+  python3-dev \
+  ruby-dev \
+  lua5.1 \
+  liblua5.1-dev \
+  libperl-dev \
+  git \
+  build-essential \
+  cscope
+
 1. Clone the official [Vim](https://github.com/vim/vim) repository using
 
 git clone https://github.com/vim/vim.git
@@ -43,4 +64,4 @@ While Vim is free software, you are encouraged to support the orphans of Uganda 
 
 • https://www.vim.org/
 
-• https://iccf-holland.org/ - ICCF Holland - helping children in Uganda - founded by Bram Moolenaar
+• https://iccf-holland.org/  ICCF Holland - helping children in Uganda - founded by Bram Moolenaar
