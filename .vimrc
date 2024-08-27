@@ -82,7 +82,7 @@ augroup END
 
 set background=light
 
-syntax enable
+syntax on
 
 set number
 
@@ -167,6 +167,7 @@ set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Set custom statusline colors
 highlight StatusLine guibg=#333333 guifg=#ffffff
+" highlight SignColumn ctermbg=7
 
 " Ensure statusline is always shown
 set laststatus=2
@@ -182,7 +183,7 @@ set isfname+=@-@
 set updatetime=50
 
 " Set color column at column 80
-set colorcolumn=80
+set colorcolumn=
 highlight ColorColumn ctermbg=7 guibg=#333333
 
 " Toggle DBUI
@@ -225,6 +226,13 @@ set foldlevel=99
 " Cut the selected text to the clipboard
 vnoremap cx "+x
 nnoremap cx "+dd
+
+set clipboard=unnamedplus
+
+nnoremap y "+y
+vnoremap y "+y
+nnoremap p "+p
+vnoremap p "+p
 
 " Delete a single character without affecting the default register
 nnoremap x "_x
@@ -519,4 +527,4 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
       \ ],
       \ }))
 
-
+highlight clear SignColumn
