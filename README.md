@@ -2,7 +2,7 @@
 
 Please refer to my [.vimrc](https://github.com/nichohells/myVim/blob/main/.vimrc), which is explained in detail
 
-# Installation0
+# Installation
 
 0. Install the necessary dependencies for Vim
 
