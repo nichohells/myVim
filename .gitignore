@@ -1,1 +1,27 @@
+# Ignore Vim swap files
+*.swp
+*.swo
+*.swx
 
+# Ignore Vim backup files
+*.bak
+*.tmp
+*.~*
+
+# Ignore session files
+Session.vim
+views/
+view/
+
+# Ignore tags file
+tags
+.tag
+
+# Ignore any compiled code or temp files
+*.pyc
+*.o
+*.out
+
+# Ignore specific system files (e.g., Mac, Linux)
+.DS_Store
+Thumbs.db
