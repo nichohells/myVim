@@ -35,6 +35,7 @@ cd vim
 4. Compile and install Vim:
 
 make
+
 sudo make install
 
 # Remember
