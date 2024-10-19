@@ -89,6 +89,11 @@ set number
 setlocal relativenumber
 let g:goyo_linenr = 1
 
+highlight Pmenu ctermbg=236 ctermfg=252
+highlight PmenuSel ctermbg=2 ctermfg=16
+highlight PmenuSbar ctermbg=240
+highlight PmenuThumb ctermbg=252
+
 " relativenumber in buffers opened from netrw 
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
