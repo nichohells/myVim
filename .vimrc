@@ -5,6 +5,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'shrikecode/kyotonight.vim'
 Plug 'tmsvg/pear-tree'
+Plug 'rhysd/committia.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'yaegassy/coc-black-formatter', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mbbill/undotree'
