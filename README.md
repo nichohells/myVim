@@ -33,7 +33,7 @@ sudo make install
 
 You don't need to use Neovim at all, Vim is way more than enough.
 
-Bram Moolenaar, who left this world on 08/03/2023, has left behind a legacy that reminds us the free software movement is about more than just code. It’s also about community, generosity, and humanity.
+Bram Moolenaar, who joined the stars above on 08/03/2023, has left behind a legacy that reminds us the free software movement is about more than just code. It’s also about community, generosity, and humanity.
 
 While Vim is free software, you are encouraged to support the orphans of Uganda through donations. For more information, please visit:
 
