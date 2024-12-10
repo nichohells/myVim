@@ -21,16 +21,7 @@ cd vim
 3. Configure Vim with the desired features,
    example below is the easiest way to compile Vim with system clipboard support (highly requested):
 
-./configure --with-features=huge \
---enable-multibyte \
---enable-rubyinterp=yes \
---enable-python3interp=yes \
---enable-perlinterp=yes \
---enable-luainterp=yes \
---enable-gui=gtk2 \
---enable-cscope \
---with-x \
---prefix=/usr/local
+./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --with-x --prefix=/usr/local
 
 4. Compile and install Vim:
 
@@ -42,7 +33,7 @@ sudo make install
 
 You don't need to use Neovim at all, Vim is way more than enough.
 
-Bram Moolenaar, who left this world on 08/03/2023, has left behind a legacy that reminds us the free software movement is about more than just code. It’s also about community, generosity, and humanity.
+Bram Moolenaar, who joined the stars above on 08/03/2023, has left behind a legacy that reminds us the free software movement is about more than just code. It’s also about community, generosity, and humanity.
 
 While Vim is free software, you are encouraged to support the orphans of Uganda through donations. For more information, please visit:
 
