@@ -3,15 +3,15 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
+Plug 'shrikecode/kyotonight.vim'
 Plug 'tmsvg/pear-tree'
+Plug 'rhysd/committia.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'yaegassy/coc-black-formatter', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-system-copy'
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'kristijanhusak/vim-dadbod-completion'
 Plug 'mattn/emmet-vim'
 Plug 'preservim/tagbar'
 Plug 'strboul/urlview.vim'
@@ -28,7 +28,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
 Plug 'preservim/nerdtree'
-
+if &filetype == 'sql'
+  Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
+  Plug 'kristijanhusak/vim-dadbod-completion'
+endif
 
 " Wilder
 if has('nvim')
@@ -43,14 +47,38 @@ else
   Plug 'gelguy/wilder.nvim'
 
 endif
+
 call plug#end()
 
 " ---.vimrc----------------------------
+
+" ColorScheme
+
+set termguicolors
+
+let g:kyotonight_bold = 1
+
+let g:kyotonight_underline = 1
+
+let g:kyotonight_italic = 0
+
+let g:kyotonight_italic_comments = 0
+
+let g:kyotonight_uniform_status_lines = 0
+
+let g:kyotonight_cursor_line_number_background = 0
+
+let g:kyotonight_uniform_diff_background = 0
+
+let g:kyotonight_lualine_bold = 1
+
+colorscheme kyotonight
 
 " Stop the annoyance and never lose work
 nnoremap <c-z> <nop>
 
 " who needs telescope
+let g:fzf_vim = {}
 nnoremap <leader>ff :Files<Cr>
 nnoremap <leader>bf :Buffers<Cr>
 
@@ -60,6 +88,7 @@ nnoremap <leader>er :lopen<Cr>
 autocmd FileType nerdtree setlocal relativenumber
 autocmd FileType nerdtree setlocal number
 autocmd FileType nerdtree setlocal signcolumn=yes
+let g:NERDTreeShowHidden = 1
 
 " Set cursor color to black (replace with your preferred color)
 highlight Cursor guifg=NONE guibg=#000000
@@ -79,8 +108,13 @@ augroup remember_cursor_position
     autocmd BufEnter * if exists("b:cursorpos") | call setpos(".", b:cursorpos) | unlet b:cursorpos | endif
 augroup END
 
-
 set background=light
+
+set cursorline
+
+highlight CursorLineNr cterm=bold gui=bold
+
+highlight CursorLineNr ctermfg=lightyellow guifg=#fe9e65
 
 syntax on
 
@@ -125,6 +159,7 @@ nmap <F8> :TagbarToggle<CR>
 set numberwidth=5
 
 " Run Go file
+
 au FileType go map <leader>go :!go run %<CR>
 
 " Entire file ocurrences
@@ -314,9 +349,14 @@ inoremap <silent><expr> <TAB>
   	\ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
+" Use <TAB> to select the completion item if the menu is visible, otherwise use <TAB> for normal behavior
+
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"
+
+" Use <C-y> to select the completion item if the menu is visible, otherwise use <C-y> for normal behavior
+
+inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<C-y>"
+
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -509,7 +549,7 @@ call wilder#setup({
       \ 'modes': [':', '/', '?'],
       \ 'next_key': '<C-n>',
       \ 'previous_key': '<C-p>',
-      \ 'accept_key': '<Down>',
+      \ 'accept_key': '<C-y>',
       \ 'reject_key': '<Up>',
       \ })
 " 'border'            : 'single', 'double', 'rounded' or 'solid'
