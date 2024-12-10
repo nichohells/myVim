@@ -21,16 +21,7 @@ cd vim
 3. Configure Vim with the desired features,
    example below is the easiest way to compile Vim with system clipboard support (highly requested):
 
-./configure --with-features=huge \
---enable-multibyte \
---enable-rubyinterp=yes \
---enable-python3interp=yes \
---enable-perlinterp=yes \
---enable-luainterp=yes \
---enable-gui=gtk2 \
---enable-cscope \
---with-x \
---prefix=/usr/local
+./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --with-x --prefix=/usr/local
 
 4. Compile and install Vim:
 
