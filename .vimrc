@@ -4,8 +4,8 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 Plug 'shrikecode/kyotonight.vim'
-Plug 'tmsvg/pear-tree'
 Plug 'rhysd/committia.vim'
+Plug 'ycm/harpy'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'yaegassy/coc-black-formatter', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mbbill/undotree'
@@ -34,6 +34,9 @@ if &filetype == 'sql'
   Plug 'kristijanhusak/vim-dadbod-completion'
 endif
 
+" inactive
+" Plug 'tmsvg/pear-tree'
+
 " Wilder
 if has('nvim')
   function! UpdateRemotePlugins(...)
@@ -51,6 +54,9 @@ endif
 call plug#end()
 
 " ---.vimrc----------------------------
+
+nnoremap <silent> <leader>ll :Harpy<cr>
+nnoremap <silent> <leader>la :HarpyAdd<cr>
 
 " ColorScheme
 
