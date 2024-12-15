@@ -4,6 +4,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 Plug 'shrikecode/kyotonight.vim'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'rhysd/committia.vim'
 Plug 'ycm/harpy'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
