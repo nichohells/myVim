@@ -5,9 +5,13 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'shrikecode/kyotonight.vim'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'ziglang/zig.vim'
+Plug 'mattn/emmet-vim'
+Plug 'rose-pine/vim'
 Plug 'rhysd/committia.vim'
 Plug 'ycm/harpy'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvie/vim-flake8'
 Plug 'yaegassy/coc-black-formatter', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
@@ -27,6 +31,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
 Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
 Plug 'preservim/nerdtree'
 if &filetype == 'sql'
@@ -59,6 +66,10 @@ call plug#end()
 nnoremap <silent> <leader>ll :Harpy<cr>
 nnoremap <silent> <leader>la :HarpyAdd<cr>
 
+nnoremap <Leader>fd :CocList diagnostics<CR>
+
+set noswapfile
+
 " ColorScheme
 
 set termguicolors
@@ -79,7 +90,7 @@ let g:kyotonight_uniform_diff_background = 0
 
 let g:kyotonight_lualine_bold = 1
 
-colorscheme kyotonight
+colorscheme rosepine
 
 " Stop the annoyance and never lose work
 nnoremap <c-z> <nop>
@@ -103,6 +114,11 @@ highlight Cursor guifg=NONE guibg=#000000
 " Disable CursorLine
 autocmd ColorScheme * highlight clear CursorLine
 
+highlight DiagnosticError guifg=#dc322f guibg=NONE  " Red
+highlight DiagnosticWarn guifg=#b58900 guibg=NONE  " Yellow
+highlight DiagnosticInfo guifg=#2aa198 guibg=NONE  " Cyan
+highlight DiagnosticHint guifg=#859900 guibg=NONE  " Green
+
 " Disable cusor highlights match parentheses, etc when under the cursor
 let loaded_matchparen = 1
 
@@ -115,7 +131,7 @@ augroup remember_cursor_position
     autocmd BufEnter * if exists("b:cursorpos") | call setpos(".", b:cursorpos) | unlet b:cursorpos | endif
 augroup END
 
-set background=light
+set background=dark
 
 set cursorline
 
@@ -123,17 +139,15 @@ highlight CursorLineNr cterm=bold gui=bold
 
 highlight CursorLineNr ctermfg=lightyellow guifg=#fe9e65
 
+" Disable underline on the cursor line
+highlight CursorLine gui=NONE cterm=NONE
+
 syntax on
 
 set number
 
 setlocal relativenumber
 let g:goyo_linenr = 1
-
-highlight Pmenu ctermbg=236 ctermfg=252
-highlight PmenuSel ctermbg=2 ctermfg=16
-highlight PmenuSbar ctermbg=240
-highlight PmenuThumb ctermbg=252
 
 " relativenumber in buffers opened from netrw 
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
@@ -175,6 +189,10 @@ nnoremap <leader>rn :%s/\<<C-r><C-w>\>//<Left>
 " Replace word under cursor
 nnoremap <leader>rm :s/\<<C-r><C-w>\>//<Left>
 
+" Replace word under cursor for whole file
+nnoremap <leader>rf :%s/\<<C-r><C-w>\>//<Left>
+
+
 " Set up key mapping for changing file permissions
 nnoremap <leader>x :!chmod +x %<CR>
 
@@ -212,9 +230,12 @@ set incsearch
 " Define a custom statusline format
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-" Set custom statusline colors
-highlight StatusLine guibg=#333333 guifg=#ffffff
-" highlight SignColumn ctermbg=7
+" Set StatusLine background to black and text to white
+highlight StatusLine guibg=#29273e guifg=#918aad
+highlight StatusLineNC guibg=#29273e guifg=#918aad
+
+
+highlight Normal ctermbg=none guibg=#000000
 
 " Ensure statusline is always shown
 set laststatus=2
@@ -531,10 +552,20 @@ let g:ale_linters = {
 \   'html': ['htmlhint'],
 \}
 
+let g:ale_linters = {
+\    'python': ['flake8'],
+\}
+
+
 " Specify which fixers to run for each filetype
 let g:ale_fixers = {
 \   '*': ['prettier'],
 \}
+
+" let g:ale_fixers = {
+" \   'python': ['black'],
+" \}
+
 
 let g:ale_linters = {
   \ 'html': ['tsserver'],
@@ -578,5 +609,7 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
       \   ' ', wilder#popupmenu_scrollbar(),
       \ ],
       \ }))
+
+" set fillchars=eob:\ 
 
 highlight clear SignColumn
