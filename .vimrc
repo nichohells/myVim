@@ -5,6 +5,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'shrikecode/kyotonight.vim'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'github/copilot.vim'
 Plug 'ziglang/zig.vim'
 Plug 'mattn/emmet-vim'
 Plug 'rose-pine/vim'
@@ -152,9 +153,6 @@ let g:goyo_linenr = 1
 " relativenumber in buffers opened from netrw 
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
-" confirm coc selection with control + y
-" inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
-
 " dadbodui toggle
 nnoremap <leader>db :DBUIToggle<CR>
 
@@ -251,7 +249,7 @@ set isfname+=@-@
 set updatetime=50
 
 " Set color column at column 80
-set colorcolumn=
+set colorcolumn=80
 highlight ColorColumn ctermbg=7 guibg=#333333
 
 " Toggle DBUI
@@ -611,5 +609,66 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
       \ }))
 
 " set fillchars=eob:\ 
+
+" Change Copilot's accept key to <C-y>
+imap <silent><script><expr> <F2> copilot#Accept("\<CR>")
+
+" Disable default <Tab> mapping for Copilot
+let g:copilot_no_tab_map = v:true
+
+" Harpy configuration
+function! HarpyJump(index)
+    let lines = readfile('.harpylist')
+    if a:index >= 1 && a:index <= len(lines)
+        execute 'e' lines[a:index - 1]
+    else
+        echo "Harpy: Invalid index."
+    endif
+endfunction
+
+function! HarpyAdd(file)
+    if empty(a:file)
+        let a:file = expand('%:p')  " Use the current file if none is provided
+    endif
+    if filereadable(a:file) && a:file != ""
+        let lines = readfile('.harpylist')
+        if index(lines, a:file) == -1  " Prevent adding duplicate files
+            call writefile([a:file], '.harpylist', 'a')  " Append only valid files
+            echo "Harpy: File added."
+        else
+            echo "Harpy: File already exists in the list."
+        endif
+    else
+        echo "Harpy: File '" . a:file . "' is not readable or does not exist."
+    endif
+endfunction
+
+" Create mappings for up to 5 files
+for i in range(1, 5)
+    execute 'nnoremap <leader>h' . i . ' :call HarpyJump(' . i . ')<CR>'
+endfor
+
+function! HarpyCleanList()
+    " Read the current .harpylist file
+    let lines = readfile('.harpylist')
+
+    " Filter out unreadable or non-existent files
+    let valid_lines = filter(lines, 'filereadable(v:val)')
+
+    " Write the cleaned list back to the .harpylist file
+    call writefile(valid_lines, '.harpylist')
+
+    echo "Harpy list cleaned."
+endfunction
+
+function! HarpyCleanList()
+    " Clear the contents of the .harpylist file
+    call writefile([], '.harpylist')
+    echo "Harpy list cleared."
+endfunction
+
+nnoremap <leader>hc :call HarpyCleanList()<CR>
+
+" End Harpy configuration
 
 highlight clear SignColumn
