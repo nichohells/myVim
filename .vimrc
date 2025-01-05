@@ -249,7 +249,8 @@ set isfname+=@-@
 set updatetime=50
 
 " Set color column at column 80
-set colorcolumn=80
+set colorcolumn=81
+
 highlight ColorColumn ctermbg=7 guibg=#333333
 
 " Toggle DBUI
