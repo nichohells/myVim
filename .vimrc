@@ -91,7 +91,7 @@ let g:kyotonight_uniform_diff_background = 0
 
 let g:kyotonight_lualine_bold = 1
 
-colorscheme rosepine
+" colorscheme rosepine
 
 " Stop the annoyance and never lose work
 nnoremap <c-z> <nop>
@@ -132,7 +132,7 @@ augroup remember_cursor_position
     autocmd BufEnter * if exists("b:cursorpos") | call setpos(".", b:cursorpos) | unlet b:cursorpos | endif
 augroup END
 
-set background=dark
+"set background=dark
 
 set cursorline
 
@@ -226,14 +226,29 @@ set nohlsearch
 set incsearch
 
 " Define a custom statusline format
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<[%n]\ %f\ %{BufferModified()}[vim]\%{GitStatus()}\ %h%r%=%-14.(%l,%c%V%)\ %P
+
+function! BufferModified()
+    return &modified ? '[+]' : ''
+endfunction
+
+function! GitStatus()
+    if exists("*FugitiveHead")
+        let branch = FugitiveHead()
+        return branch != '' ? '[Git(' . branch . ')]' : ''
+    endif
+    return ''
+endfunction
 
 " Set StatusLine background to black and text to white
-highlight StatusLine guibg=#29273e guifg=#918aad
-highlight StatusLineNC guibg=#29273e guifg=#918aad
 
+highlight StatusLine guibg=#FFFFFF guifg=#000000
+highlight StatusLineNC guibg=#FFFFFF guifg=#000000
+"highlight StatusLine guibg=#29273e guifg=#918aad
+"highlight StatusLineNC guibg=#29273e guifg=#918aad
 
-highlight Normal ctermbg=none guibg=#000000
+highlight Normal ctermbg=none guibg=#FFFFFF
+"highlight Normal ctermbg=none guibg=#000000
 
 " Ensure statusline is always shown
 set laststatus=2
@@ -251,7 +266,7 @@ set updatetime=50
 " Set color column at column 80
 set colorcolumn=81
 
-highlight ColorColumn ctermbg=7 guibg=#333333
+highlight ColorColumn ctermbg=7 guibg=#d4d4d4
 
 " Toggle DBUI
 nnoremap <F10> :DBUIToggle<CR>
@@ -571,6 +586,7 @@ let g:ale_linters = {
 \ }
 
 " Run fixers on file save
+
 let g:ale_fix_on_save = 1
 
 " Disable linting on text change and insert leave
@@ -671,5 +687,7 @@ endfunction
 nnoremap <leader>hc :call HarpyCleanList()<CR>
 
 " End Harpy configuration
+"
+highlight SignColumn guibg=darkgrey
 
-highlight clear SignColumn
+"highlight clear SignColumn
