@@ -28,7 +28,7 @@ Plug 'tell-k/vim-autopep8'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'rbong/vim-flog'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
@@ -178,7 +178,6 @@ nmap <F8> :TagbarToggle<CR>
 set numberwidth=5
 
 " Run Go file
-
 au FileType go map <leader>go :!go run %<CR>
 
 " Entire file ocurrences
