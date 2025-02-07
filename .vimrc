@@ -5,6 +5,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'shrikecode/kyotonight.vim'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'jiangmiao/auto-pairs'
 Plug 'github/copilot.vim'
 Plug 'ziglang/zig.vim'
 Plug 'mattn/emmet-vim'
@@ -632,6 +633,21 @@ imap <silent><script><expr> <F2> copilot#Accept("\<CR>")
 " Disable default <Tab> mapping for Copilot
 let g:copilot_no_tab_map = v:true
 
+" Toggle copilot with <leader>cp (it is disabled by default)
+let g:copilot_enabled = 0
+
+function! ToggleCopilot()
+    if g:copilot_enabled
+	let g:copilot_enabled = 0
+	echo "Copilot disabled."
+    else
+	let g:copilot_enabled = 1
+	echo "Copilot enabled."
+    endif
+endfunction
+
+nnoremap <leader>cp :call ToggleCopilot()<CR>
+
 " Harpy configuration
 function! HarpyJump(index)
     let lines = readfile('.harpylist')
@@ -690,3 +706,5 @@ nnoremap <leader>hc :call HarpyCleanList()<CR>
 highlight SignColumn guibg=darkgrey
 
 "highlight clear SignColumn
+
+let g:AutoPairsShortcutToggle = '<leader>ap'
