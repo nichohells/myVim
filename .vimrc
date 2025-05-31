@@ -703,8 +703,15 @@ nnoremap <leader>hc :call HarpyCleanList()<CR>
 
 " End Harpy configuration
 "
+
+"Highlight clear SignColumn
 highlight SignColumn guibg=darkgrey
 
-"highlight clear SignColumn
-
+"Toggle Autopair
 let g:AutoPairsShortcutToggle = '<leader>ap'
+
+"Compile and run C file
+au FileType c map <leader>rc :!gcc -o %:r % && ./%:r<CR>
+
+"Compile C file
+au FileType c map <leader>cc :!gcc -o %:r %<CR>
