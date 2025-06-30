@@ -74,7 +74,7 @@ set noswapfile
 
 " ColorScheme
 
-set termguicolors
+"set termguicolors
 
 let g:kyotonight_bold = 1
 
@@ -92,7 +92,7 @@ let g:kyotonight_uniform_diff_background = 0
 
 let g:kyotonight_lualine_bold = 1
 
-" colorscheme rosepine
+"colorscheme rosepine
 
 " Stop the annoyance and never lose work
 nnoremap <c-z> <nop>
@@ -133,13 +133,14 @@ augroup remember_cursor_position
     autocmd BufEnter * if exists("b:cursorpos") | call setpos(".", b:cursorpos) | unlet b:cursorpos | endif
 augroup END
 
-"set background=dark
+set background=dark
 
 set cursorline
 
 highlight CursorLineNr cterm=bold gui=bold
 
-highlight CursorLineNr ctermfg=lightyellow guifg=#fe9e65
+"highlight CursorLineNr ctermfg=lightyellow guifg=#fe9e65
+highlight CursorLineNr ctermfg=white guifg=#ffffff
 
 " Disable underline on the cursor line
 highlight CursorLine gui=NONE cterm=NONE
@@ -242,12 +243,12 @@ endfunction
 
 " Set StatusLine background to black and text to white
 
-highlight StatusLine guibg=#FFFFFF guifg=#000000
+highlight StatusLine guibg=#000000 guifg=#FFFFFF
 highlight StatusLineNC guibg=#FFFFFF guifg=#000000
 "highlight StatusLine guibg=#29273e guifg=#918aad
 "highlight StatusLineNC guibg=#29273e guifg=#918aad
 
-highlight Normal ctermbg=none guibg=#FFFFFF
+"highlight Normal ctermbg=none guibg=#FFFFFF
 "highlight Normal ctermbg=none guibg=#000000
 
 " Ensure statusline is always shown
@@ -256,6 +257,9 @@ set laststatus=2
 " Adjust buffer appearance
 set scrolloff=8
 set signcolumn=yes
+
+" SignColumn for darkness
+highlight SignColumn ctermbg=236 guibg=#2c2c2c
 
 " Adjust isfname setting to include "@-@"
 set isfname+=@-@
@@ -266,7 +270,8 @@ set updatetime=50
 " Set color column at column 80
 set colorcolumn=81
 
-highlight ColorColumn ctermbg=7 guibg=#d4d4d4
+"highlight ColorColumn ctermbg=7 guibg=#d4d4d4
+highlight ColorColumn ctermbg=236 guibg=#2c2c2c
 
 " Toggle DBUI
 nnoremap <F10> :DBUIToggle<CR>
